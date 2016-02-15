@@ -1,13 +1,14 @@
 package MChain;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 public abstract class Node {
 	
 	private int id; 
 	private String name;
-	private ArrayList<Node> successors; 
+	private List<Node> successors; 
 	
 	private int d; 
 	private boolean n_isAbsorbant; 
@@ -66,11 +67,11 @@ public abstract class Node {
 		this.id = id;
 	}
 
-	public ArrayList<Node> getSuccessors() {
+	public List<Node> getSuccessors() {
 		return successors;
 	}
 
-	public void setSuccessors(ArrayList<Node> successors) {
+	public void setSuccessors(List<Node> successors) {
 		this.successors = successors;
 	}
 

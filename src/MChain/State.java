@@ -1,7 +1,7 @@
 package MChain;
 
 import java.util.ArrayList;
-import java.util.Stack;
+import java.util.List;
 
 public class State extends Node {
 	
@@ -15,9 +15,9 @@ public class State extends Node {
 		super(id, name, m);
 	}
 
-	public void buildSuccessors(ArrayList<State> nodeList, Matrix m)
+	public void buildSuccessors(List<State> nodeList, Matrix m)
 	{
-		ArrayList<State> tmp = new ArrayList<State>();
+		List<Node> tmp = new ArrayList<Node>();
 		for(int j = 0; j < m.getWidth(); j++)
 		{
 			if( m.at(super.getId(), j) > 0 )

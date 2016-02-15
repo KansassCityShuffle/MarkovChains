@@ -1,15 +1,22 @@
 package MChain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class EClass extends Node {
 	
-	public EClass(int id, Matrix m)
+	private List<State> states = new ArrayList<State>();
+	
+	public EClass(int id, Matrix m, State initial)
 	{
 		super(id, m);
+		this.states.add(initial);
 	}
 	
-	public EClass(int id, String name, Matrix m)
+	public EClass(int id, String name, Matrix m, State initial)
 	{
 		super(id, name, m);
+		this.states.add(initial);
 	}
 	
 	public int getId() {
@@ -67,5 +74,24 @@ public class EClass extends Node {
 	public void setD(int d) {
 		super.setD(d);
 	}
+
+	public List<State> getStates() {
+		return states;
+	}
+
+	public void setStates(List<State> states) {
+		this.states = states;
+	}
 	
+	public String toString()
+	{
+		String str = new String();
+		str += this.getName() + " "; 
+		for(State st : states)
+		{
+			str += st.getName() + " ";
+		}
+		return str; 
+	}
+
 }

@@ -31,12 +31,8 @@ public class App {
 		System.out.println(b.toString());
 	
 		MChain mc = new MChain(a);
-		
-		List<EClass> c = mc.getClasses(); 
-		for(int i = 0; i < c.size(); i++)
-		{	
-			System.out.println(c.get(i).toString());
-		}
+		 
+		mc.printClasses();
 	}
 
 }

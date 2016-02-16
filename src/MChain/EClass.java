@@ -86,11 +86,12 @@ public class EClass extends Node {
 	public String toString()
 	{
 		String str = new String();
-		str += this.getName() + " "; 
+		str += this.getName() + " = {"; 
 		for(State st : states)
 		{
-			str += st.getName() + " ";
+			str += " " + st.getName();
 		}
+		str += " } ";
 		return str; 
 	}
 

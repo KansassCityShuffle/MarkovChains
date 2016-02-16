@@ -55,10 +55,10 @@ public class MChain {
 								tmp.get(j).setExplored(true);
 								cpt++; 
 							}
-						
+							
 							else if(tmp.get(i).isAccessible(tmp.get(j), this.m.getHeight()) && 
-									tmp.get(j).isAccessible(tmp.get(i), this.m.getHeight()));
-							{		
+									tmp.get(j).isAccessible(tmp.get(i), this.m.getHeight()))
+							{	
 								current.getStates().add(tmp.get(j));
 								tmp.get(j).setExplored(true);
 							}
@@ -70,8 +70,18 @@ public class MChain {
 				tmp.get(i).setExplored(true);
 			}
 		}
+		states.addAll(tmp);
 	}
-
+	
+	public void printClasses()
+	{
+		for(int i = 0; i < this.getClasses().size(); i++)
+		{	
+			System.out.println(this.getClasses().get(i).toString());
+		}
+		
+	}
+	
 	public Matrix getM() {
 		return m;
 	}

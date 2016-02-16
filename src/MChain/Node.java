@@ -8,7 +8,23 @@ public abstract class Node {
 	
 	private int id; 
 	private String name;
-	private List<Node> successors; 
+	private List<Node> successors = new ArrayList<Node>()
+	{
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+		@Override public String toString()
+		{
+			String str = new String();
+			for(Node s : this)
+			{
+				str += s.getName() + " "; 
+			}
+			return str;
+		}
+	}; 
 	
 	private int d; 
 	private boolean n_isAbsorbant; 
@@ -37,7 +53,7 @@ public abstract class Node {
 		Stack<Node> stack = new Stack<Node>();
 		stack.push(this);
 		boolean[] visited = new boolean[size];
-		while(!stack.isEmpty())
+		while( !stack.isEmpty() )
 		{
 			Node current_n = stack.pop();
 			if( !visited[current_n.getId()] && !current_n.isAbsorbant() )
@@ -46,7 +62,7 @@ public abstract class Node {
 				if( current_n == node )
 					return true;
 				else 
-				{
+				{	
 					for(Node tmp : this.getSuccessors())
 					{
 						stack.push(tmp);
@@ -122,6 +138,8 @@ public abstract class Node {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	
 	
 	
 }

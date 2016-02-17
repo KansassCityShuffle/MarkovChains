@@ -8,6 +8,7 @@ import java.awt.LayoutManager;
 import java.awt.RenderingHints;
 import java.awt.Stroke;
 import java.awt.geom.CubicCurve2D;
+import java.awt.geom.QuadCurve2D;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
@@ -29,10 +30,11 @@ public class BGPanel extends JPanel{
 		arrows = new ArrayList<ArrowLink>();
 	}
 	
-	public void link(SPanel p1, SPanel p2)
+	public void link(SPanel p1, SPanel p2, Matrix m)
 	{
 
-		ArrowLink arrow = new ArrowLink(p1, p2, 5);
+		ArrowLink arrow = new ArrowLink(p2, p1, 25,
+				m.at(p2.getState().getId(),p1.getState().getId() ), this);
 		
 		arrows.add(arrow);
 		this.repaint();
@@ -60,12 +62,10 @@ public class BGPanel extends JPanel{
         
         for (ArrowLink arrow : arrows)
         {
-            g2d.drawLine(arrow.getsX(), arrow.getsY(), arrow.geteX(), arrow.geteY());
+        	arrow.draw(g2d);
         }
+        
 
-
-        //cubcurve = new CubicCurve2D.Float(x1,y1,x1+200,y1-115,x2-200,y2+115,x2,y2);
-        //g2d.draw(cubcurve);
 
     }
 	

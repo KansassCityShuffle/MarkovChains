@@ -58,7 +58,7 @@ public class Window extends JFrame {
 				for (int i=0; i < panel2.getState().getSuccessors().size(); i++)
 				{
 					if (panel.getState()==panel2.getState().getSuccessors().get(i))
-						bg.link(panel, panel2);
+						bg.link(panel, panel2, chain.getM());
 				}
 			}
 		}

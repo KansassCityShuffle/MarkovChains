@@ -33,12 +33,14 @@ public class App {
 		System.out.println(b.toString());
 	
 		MChain mc = new MChain(a);
+		mc.printClasses();
+
+		
 		// graphic stuff
 		Window ctx = new Window();
 		ctx.create();
 		ctx.renderStateGraph(mc);
 		 
-		mc.printClasses();
 	}
 
 }

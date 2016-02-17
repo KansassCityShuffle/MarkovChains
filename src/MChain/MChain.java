@@ -31,7 +31,6 @@ public class MChain {
 		{
 			State s = new State(i, "s" + i, this.m);
 			tmp.add(s);
-			states.add(s);
 		}
 		for(State st : tmp)
 		{

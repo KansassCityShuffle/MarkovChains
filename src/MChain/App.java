@@ -2,6 +2,8 @@ package MChain;
 
 import java.util.List;
 
+
+
 public class App {
 
 	private static final float[][] values5x5 = 
@@ -37,6 +39,13 @@ public class App {
 		{	
 			System.out.println(c.get(i).toString());
 		}
+		
+		// graphic stuff
+		Window ctx = new Window();
+		ctx.create();
+		ctx.renderStateGraph(mc);
+
+		
 	}
 
 }

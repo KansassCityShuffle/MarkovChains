@@ -13,7 +13,7 @@ public class Window extends JFrame {
 	private static final long serialVersionUID = 806842610383597477L;
 
 	// base components
-	private JPanel bg;
+	private BGPanel bg;
 	private ArrayList<SPanel> statePanelList;
 	
 	/**
@@ -27,7 +27,7 @@ public class Window extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
         
-        bg = new JPanel(null);
+        bg = new BGPanel(null);
         bg.setBackground(Color.LIGHT_GRAY);
         add(bg);
         
@@ -51,10 +51,18 @@ public class Window extends JFrame {
 			cpt++;
 		}
 
-		for (SPanel panel : statePanelList)
+		for (SPanel panel2 : statePanelList)
 		{
-			panel.buildLinks((ArrayList<State>)chain.getStates());
+			for (SPanel panel : statePanelList)
+			{
+				for (int i=0; i < panel2.getState().getSuccessors().size(); i++)
+				{
+					if (panel.getState()==panel2.getState().getSuccessors().get(i))
+						bg.link(panel, panel2);
+				}
+			}
 		}
+		
 
 	}
 	

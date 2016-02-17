@@ -6,7 +6,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -39,15 +38,12 @@ public class SPanel extends JPanel implements MouseInputListener {
 		nPanelLabel.setVisible(true);
 		this.add(nPanelLabel, BorderLayout.CENTER);
 		this.validate();
+		nPanelLabel.repaint();
 		nPanelLabel.revalidate();
 
 	}
 	
-	public void buildLinks(ArrayList<State> states)
-	{
-		
-	}
-	
+
 	public void setState(State s)
 	{
 		state = s;
@@ -104,6 +100,7 @@ public class SPanel extends JPanel implements MouseInputListener {
 				this.getBounds().x+e.getX()-this.getBounds().width/2,
 				this.getBounds().y+e.getY()-this.getBounds().height/2,
 				this.getBounds().width, this.getBounds().height);
+		((BGPanel) this.getParent()).updateLinks();
 		this.getParent().repaint();		
 	}
 

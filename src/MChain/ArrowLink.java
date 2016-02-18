@@ -21,26 +21,34 @@ public class ArrowLink {
 	private float vy;
 	private float L;
 	private float disp;
-	private SPanel p1;
-	private SPanel p2;
+	private JPanel p1;
+	private JPanel p2;
 	private float tW;
 	private float tH;
 	private float coeff;
 	private JLabel clabel;
 	
-	public ArrowLink(SPanel p1, SPanel p2, float disp, float coeff, JPanel bg)
+	public ArrowLink(JPanel p1, JPanel p2, float disp, float coeff, JPanel bg)
 	{
 		this.p1 = p1;
 		this.p2 = p2;
 		this.disp = disp;
 		this.tW = p2.getWidth();
 		this.tH = p2.getHeight();
-		this.coeff = coeff;
-		Float cf = coeff;
-		clabel = new JLabel(cf.toString());
-		clabel.setFont(clabel.getFont().deriveFont(clabel.getFont().getSize()*0.75f) );
-		clabel.setOpaque(true);
-		clabel.setBackground(Color.LIGHT_GRAY);
+		if (coeff!=0.f)
+		{
+			this.coeff = coeff;
+			Float cf = coeff;
+			clabel = new JLabel(cf.toString());
+			clabel.setFont(clabel.getFont().deriveFont(clabel.getFont().getSize()*0.75f) );
+			clabel.setOpaque(true);
+			clabel.setBackground(Color.LIGHT_GRAY);
+		}
+		else
+		{
+			clabel = new JLabel();
+			clabel.setOpaque(false);
+		}
 		update();
 		bg.add(clabel);
 		bg.repaint();

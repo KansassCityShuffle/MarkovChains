@@ -39,6 +39,15 @@ public class BGPanel extends JPanel{
 		arrows.add(arrow);
 		this.repaint();
 	}
+
+	public void link(CPanel p1, CPanel p2)
+	{
+
+		ArrowLink arrow = new ArrowLink(p2, p1, 25, 0.f, this);
+		
+		arrows.add(arrow);
+		this.repaint();
+	}
 	
 	public void updateLinks()
 	{
@@ -65,8 +74,19 @@ public class BGPanel extends JPanel{
         	arrow.draw(g2d);
         }
         
-
-
+        for (int i=0; i < getHeight() / 50; i++)
+        {
+            for (int j=0; j < getWidth() / 50; j++)
+            {
+            	g2d.fillOval(j*50+25, i*50+25, 2, 2);;
+            }
+        }
+        
     }
+	
+	public void organize()
+	{
+		//System.exit(ERROR);
+	}
 	
 }

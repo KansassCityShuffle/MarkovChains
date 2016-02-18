@@ -40,6 +40,7 @@ public class App {
 		Window ctx = new Window();
 		ctx.create();
 		ctx.renderStateGraph(mc);
+		//ctx.renderClassGraph(mc);
 		 
 	}
 

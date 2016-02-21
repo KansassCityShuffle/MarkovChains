@@ -1,5 +1,6 @@
 package MChain;
 
+import java.io.File;
 import java.util.List;
 
 
@@ -15,6 +16,8 @@ public class App {
 			{0.5f, 0, 0.5f, 0, 0}
 	}; 
 	
+
+
 	public static void main(String[] args) {
 		
 		System.out.println("Super Andreï Markov Chains Application");
@@ -38,9 +41,8 @@ public class App {
 		
 		// graphic stuff
 		Window ctx = new Window();
-		ctx.create();
-		ctx.renderStateGraph(mc);
-		//ctx.renderClassGraph(mc);
+		ctx.create(mc);
+
 		 
 	}
 

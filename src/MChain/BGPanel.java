@@ -59,6 +59,13 @@ public class BGPanel extends JPanel{
 
 	}
 	
+	public void removeLinks()
+	{
+		arrows.clear();
+		this.repaint();
+
+	}
+	
 	@Override
     protected void paintComponent(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
@@ -74,6 +81,7 @@ public class BGPanel extends JPanel{
         	arrow.draw(g2d);
         }
         
+        /*
         for (int i=0; i < getHeight() / 50; i++)
         {
             for (int j=0; j < getWidth() / 50; j++)
@@ -81,6 +89,7 @@ public class BGPanel extends JPanel{
             	g2d.fillOval(j*50+25, i*50+25, 2, 2);;
             }
         }
+        */
         
     }
 	

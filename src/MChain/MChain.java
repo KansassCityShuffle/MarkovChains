@@ -1,5 +1,12 @@
 package MChain;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -16,8 +23,11 @@ public class MChain {
 	 */
 	public MChain(Matrix m)
 	{
-		this.setM(m); 
-		this.buildClasses();
+		if (m != null)
+		{
+			this.setM(m); 
+			this.buildClasses();
+		}
 	}
 
 	/**
@@ -71,6 +81,7 @@ public class MChain {
 			}
 		}
 		states.addAll(tmp);
+				
 	}
 
 	
@@ -106,5 +117,88 @@ public class MChain {
 	public void setClasses(List<EClass> classes) {
 		this.classes = classes;
 	}
+	
+	
+	public void save(File file)
+	{
+		PrintWriter out = null;
+		if (!file.exists())
+			try {
+				file.createNewFile();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		else
+			try {
+				file.delete();
+				file.createNewFile();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		
+	    try {
+	        out = new PrintWriter(new FileWriter(file.getAbsolutePath()));
+	        out.println(m.getHeight());
+	        out.println(m.toString());
+	    } catch (IndexOutOfBoundsException e) {
+			e.printStackTrace();                 
+	    } catch (IOException e) {
+			e.printStackTrace();
+	    } finally {
+	        if (out != null)
+	            out.close();
+	    }		
+	}
+	
+	public MChain load(File file)
+	{
+		BufferedReader br = null;
+		String line = "";
+		int size = 0;
+		float vals[][] = null;
+		
+		try {
+
+			br = new BufferedReader(new FileReader(file.getAbsolutePath()));
+			int row = 0;
+			if ((size = Integer.parseInt(br.readLine())) != 0)
+				vals = new float[size][size];
+				
+			while ((line = br.readLine()) != null) {
+
+				String[] elt = line.split(" ");
+				if (elt.length!=size) break;
+				for (int col=0; col < elt.length; col++)
+					vals[row][col] = Float.parseFloat(elt[col]);
+				row++;
+
+			}
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (br != null) {
+				try {
+					br.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}			
+		}
+		
+		if (vals==null) return null;
+		
+
+		
+		Matrix mat = new Matrix(size, size, vals);
+		System.out.println(mat.toString());
+		if(!mat.isWellFormed()) return null;
+		MChain chain = new MChain(mat);
+
+		return chain;
+	}
+	
 	
 }

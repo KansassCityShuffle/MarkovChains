@@ -8,7 +8,7 @@ public abstract class Node {
 	
 	private int id; 
 	private String name;
-	private List<Node> successors = new ArrayList<Node>()
+	List<Node> successors = new ArrayList<Node>()
 	{
 		/**
 		 * 
@@ -62,12 +62,8 @@ public abstract class Node {
 				if( current_n == node )
 					return true;
 				else 
-				{	
 					for(Node tmp : this.getSuccessors())
-					{
 						stack.push(tmp);
-					}
-				}
 			}
 			else 
 				return false; 
@@ -75,6 +71,17 @@ public abstract class Node {
 		return false;
 	}
 	
+	protected boolean isAdjacent(Node goal, Matrix m)
+	{
+		for( int i = 0; i < this.getStates().size(); i++  )
+			for(int j = 0; j < goal.getStates().size(); j++)
+				if( m.at(this.getStates().get(i).getId(), goal.getStates().get(j).getId() ) > 0 )
+					return true;
+		return false; 
+	}
+	
+	abstract List<State> getStates();
+
 	public int getId() {
 		return id;
 	}
@@ -90,7 +97,7 @@ public abstract class Node {
 	public void setSuccessors(List<Node> successors) {
 		this.successors = successors;
 	}
-
+	
 	public int getD() {
 		return d;
 	}
@@ -138,8 +145,7 @@ public abstract class Node {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
+
 	
 	
 }

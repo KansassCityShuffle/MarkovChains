@@ -6,6 +6,7 @@ import java.util.List;
 public class EClass extends Node {
 	
 	private List<State> states = new ArrayList<State>();
+	//private List<EClass> successors = new ArrayList<EClass>();
 	
 	public EClass(int id, Matrix m, State initial)
 	{
@@ -17,6 +18,32 @@ public class EClass extends Node {
 	{
 		super(id, name, m);
 		this.states.add(initial);
+	}
+	
+	public boolean isAdjacent(EClass nodeL, Matrix m)
+	{
+		return super.isAdjacent(nodeL, m);
+	}
+	
+	public void buildClassSuccessors(List<EClass> classList, Matrix m)
+	{
+		List<Node> tmp = new ArrayList<Node>();
+		List<EClass> goalList = new ArrayList<EClass>();
+		goalList = classList;
+		//goalList.remove(this);
+		for(int j = 0; j < goalList.size(); j++)
+		{
+			if( this.isAdjacent(goalList.get(j), m) )
+			{
+				tmp.add( goalList.get(j) );
+			}
+		}
+		
+		this.setSuccessors(tmp, 0);
+	}
+	
+	private void setSuccessors(List<Node> successors, int i) {
+		super.setSuccessors(successors); 
 	}
 	
 	public int getId() {

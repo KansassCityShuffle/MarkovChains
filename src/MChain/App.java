@@ -1,9 +1,5 @@
 package MChain;
 
-import java.io.File;
-import java.util.List;
-
-
 
 public class App {
 
@@ -35,9 +31,9 @@ public class App {
 	
 		System.out.println(b.toString());
 	
-		MChain mc = new MChain(a);
-		mc.printClasses();
+		MChain mc = new MChain(a); 
 
+		mc.printClasses();
 		
 		// graphic stuff
 		Window ctx = new Window();

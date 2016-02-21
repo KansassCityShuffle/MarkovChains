@@ -77,6 +77,7 @@ public class MChain {
 		}
 		states.addAll(tmp);
 	}
+
 	
 	public void setProperties()
 	{

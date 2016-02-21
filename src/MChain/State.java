@@ -15,7 +15,7 @@ public class State extends Node {
 		super(id, name, m);
 	}
 
-	public void buildSuccessors(List<State> nodeList, Matrix m)
+	public void buildStateSuccessors(List<State> nodeList, Matrix m)
 	{
 		List<Node> tmp = new ArrayList<Node>();
 		for(int j = 0; j < m.getWidth(); j++)
@@ -25,6 +25,7 @@ public class State extends Node {
 				tmp.add( nodeList.get(j) );
 			}
 		}
+		
 		this.setSuccessors(tmp);
 	}
 	
@@ -87,6 +88,16 @@ public class State extends Node {
 
 	public void setD(int d) {
 		super.setD(d);
+	}
+
+
+	List<State> getStates() {
+		return null; 
+	}
+
+	
+	public void setSuccessors(List<Node> successors) {
+		this.successors = successors; 
 	}
 	
 }

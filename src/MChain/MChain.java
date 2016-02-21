@@ -1,7 +1,6 @@
 package MChain;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class MChain {
@@ -18,6 +17,12 @@ public class MChain {
 	{
 		this.setM(m); 
 		this.buildClasses();
+		List<EClass> tmp = new ArrayList<EClass>();
+		tmp.addAll(this.getClasses());
+		for(EClass c : this.getClasses())
+		{
+			c.buildClassSuccessors(tmp, m);
+		}
 	}
 
 	/**
@@ -34,7 +39,7 @@ public class MChain {
 		}
 		for(State st : tmp)
 		{
-			st.buildSuccessors(tmp, this.m);
+			st.buildStateSuccessors(tmp, this.m);
 		}
 		for(int i = 0; i < this.m.getHeight() - 1; i ++)
 		{
@@ -73,11 +78,26 @@ public class MChain {
 		states.addAll(tmp);
 	}
 	
+	public void setProperties()
+	{
+		for(EClass c : this.getClasses())
+		{
+			/* set Absorption property on each class (states absorption is already defined) */
+			c.setAbsorbant(c.getStates().size() == 1 && c.getStates().get(0).isAbsorbant());
+			
+			
+		}
+	}
+	
+	/**
+	 * 
+	 */
 	public void printClasses()
 	{
 		for(int i = 0; i < this.getClasses().size(); i++)
 		{	
 			System.out.println(this.getClasses().get(i).toString());
+			System.out.println("successors " + this.getClasses().get(i).getSuccessors().toString());
 		}
 		
 	}

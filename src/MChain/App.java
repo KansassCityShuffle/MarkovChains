@@ -1,7 +1,5 @@
 package MChain;
 
-import java.util.List;
-
 public class App {
 
 	private static final float[][] values5x5 = 
@@ -30,9 +28,9 @@ public class App {
 	
 		System.out.println(b.toString());
 	
-		MChain mc = new MChain(a);
-		 
+		MChain mc = new MChain(a); 
 		mc.printClasses();
+
 	}
 
 }
